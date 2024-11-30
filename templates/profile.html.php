@@ -1,5 +1,5 @@
 <?php
-require_once "../php/check.php";
+require_once "../includes/check.php";
 ?>
 
 <div class="profile-container">
@@ -17,6 +17,28 @@ require_once "../php/check.php";
         </div>
     </div>
 
+    <div class="nav-bar">
+        <ul class="nav-bar-list">
+            <li>
+                <a href="">Edit Profile</a>
+            </li>
+            <li>
+                <a href="">Posts</a>
+            </li>
+            <li>
+                <a href="../php/addPost.php">Create</a>
+            </li>
+            <li>
+                <a href="">Comments</a>
+            </li>
+            <li>
+                <a href="">Upvoted</a>
+            </li>
+            <li>
+                <a href="">Downvoted</a>
+            </li>
+        </ul>
+    </div>
 </div>
 
 <?php
@@ -47,7 +69,6 @@ foreach ($posts as $post) {
                     <?= $post['module_name'] ?>
                 </span>
             </div>
-
         </div>
 
         <div class="post-content">
@@ -58,7 +79,8 @@ foreach ($posts as $post) {
             </div>
         </div>
 
-        <div class="post-details">
+        <div class="post-details" style="justify-content: space-between;">
+            <div style="display: flex; margin: 0px;">
             <div class="up-down">
                 <button class="up-button" data-post-id="<?php echo $post['id']; ?>">
                     <i class="fa-regular fa-circle-up"></i>
@@ -80,6 +102,16 @@ foreach ($posts as $post) {
 
             <div>
                 <button><i class="fa-regular fa-share-from-square"></i> <?= $post['n_shares'] ?? 0 ?></button>
+            </div>
+            </div>
+
+            <div style="margin-right: 10px;">
+                <a href="delete-post.php">
+                    <button id="deleteButton" class="delete-button">
+                                <i class="fa-solid fa-trash-can"></i>
+                    </button>
+                </a>
+
             </div>
         </div>
     </div>

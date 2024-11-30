@@ -1,5 +1,5 @@
 <?php 
-require_once "../php/check.php";
+require_once "../includes/check.php";
 
 shuffle($posts);
 foreach ($posts as $post) {

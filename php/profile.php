@@ -1,5 +1,5 @@
 <?php 
-require_once "check.php";
+require_once "../includes/check.php";
 
 $title = $_SESSION['user']['first_name'] . " " . $_SESSION['user']['middle_name'] . " " . $_SESSION['user']['last_name'];
 ob_start();

@@ -1,5 +1,5 @@
 <?php 
-require "check.php";
+require_once "../includes/check.php";
 
 $title = "Reddit";
 ob_start();

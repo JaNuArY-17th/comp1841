@@ -415,13 +415,14 @@ ul {
 .profile-container {
     position: fixed;
     display: flex;
+    flex-direction: column;
     justify-content: left;
     height: 15vh;
     background-color: #1A1A1B;
     border-bottom: 1px solid #616161;
     z-index: 998;
     top: 56;
-    padding: 30px;
+    padding: 30px 30px 0px 60px;
     left: 0;
     right: 0;
     margin: 0px 600px 10px 600px;
@@ -446,4 +447,20 @@ ul {
     justify-content: center;
 }
 
+.nav-bar-list {
+    list-style-type: none;
+}
 
+.nav-bar-list li {
+    float: left;
+    padding: 10px;
+    margin-right: 20px;
+    border-radius: 25px;
+    font-size: small;
+    font-weight: bold;
+}
+
+.nav-bar-list li:hover {
+    background-color: #555F66;
+    cursor: pointer;
+}

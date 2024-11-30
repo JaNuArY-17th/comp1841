@@ -1,4 +1,6 @@
-
+<?php 
+require_once "../includes/check.php";
+?>
 
 <!DOCTYPE html>
 <html lang="en">

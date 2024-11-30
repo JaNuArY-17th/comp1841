@@ -1,5 +1,5 @@
 <?php 
-require_once "check.php";
+require_once "../includes/check.php";
 
 $title = "Submit Post";
 ob_start();
