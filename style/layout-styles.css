@@ -504,10 +504,16 @@ ul {
 }
 
 /* Edit Profile */
+.personal-info {
+    border-bottom: 1px solid #343536;
+    margin-bottom: 50px;
+    padding-bottom: 20px;
+}
+
 .edit-profile form {
     display: flex;
     align-items: center;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 
 .edit-profile form a {
@@ -645,4 +651,82 @@ ul {
 .delete-button:hover {
     background-color: #0e11136e;
 }
+/* Select */
+.select {
+    position: relative;
+    min-width: 200px;
+}
 
+.select svg {
+    position: absolute;
+    right: 20px;
+    top: calc(50% - 3px);
+    width: 10px;
+    height: 6px;
+    stroke-width: 2px;
+    stroke: #9098a9;
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    pointer-events: none;
+}
+
+.select select {
+    -webkit-appearance: none;
+    padding: 10px 70px 10px 10px;
+    width: 100%;
+    border: none;
+    border-radius: 25px;
+    background: #2A3236;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 16px;
+    transition: all 150ms ease;
+    color: white;
+}
+
+.select select:required:invalid {
+    color: white;
+}
+
+.select select option {
+    color: white;
+}
+
+.select select option {
+    color: white;
+}
+
+.select select option[value=""][disabled] {
+    display: none;
+}
+
+.select select:focus {
+    outline: none;
+    border-color: white;
+}
+
+.select select:hover {
+    background: #333D42;
+}
+
+.select select:hover+svg {
+    stroke: white;
+}
+
+.sprites {
+    position: absolute;
+    width: 0;
+    height: 0;
+    pointer-events: none;
+    user-select: none;
+}
+
+.select-items,
+.select-selected {
+    color: white;
+}
+
+.select select option {
+    color: white;
+}

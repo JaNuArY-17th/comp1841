@@ -20,7 +20,7 @@ require_once "../includes/check.php";
     <div class="nav-bar">
         <div class="tab-list">
             <button class="tablinks" onclick="openTab(event, 'editProfile')" id="defaultOpen">
-                Edit Profile
+                Profile
             </button>
             <button class="tablinks" onclick="openTab(event, 'posts')">
                 Posts
@@ -133,34 +133,66 @@ require_once "../includes/check.php";
                         <img id="blurredBackground" class="blurred-background" style="display: none;"
                             alt="Blurred Background" />
                         <img id="imagePreview" class="image-preview" style="display: none;" alt="Image Preview" />
-                        <button id="deleteButton" class="delete-button" style="display: none;">
+
+                        <button id="deleteButton" class="delete-button" style="display: none;" type="none">
                             <i class="fa-solid fa-trash-can"></i>
                         </button>
 
-                        <button id="acceptButton" class="delete-button" type="submit" style="display: none; left: 8px" name="accept">
+                        <button id="acceptButton" class="delete-button" type="submit" style="display: none; left: 8px"
+                            name="accept">
                             <i class="fa-solid fa-circle-check"></i>
                         </button>
                     </div>
                 </div>
             </form>
 
-            <label for="" class="timestamp">Sex</label>
-            <form action="" method="post">
+            <label for="" class="timestamp">Gender</label>
+            <form action="../php/edit-gender.php" method="post"
+                style="justify-content: space-between; margin-top: 5px;">
+                <div class="toolbar">
+                    <label class="select" for="slct">
+                        <select id="slct" required="required" name="gender">
+                            <option value="" disabled="disabled" selected="selected"><?= $_SESSION['user']['sex'] ?>
+                            </option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Other">Other</option>
+                        </select>
+                        <svg>
+                            <use xlink:href="#select-arrow-down"></use>
+                        </svg>
+                    </label>
 
+                    <svg class="sprites">
+                        <symbol id="select-arrow-down" viewbox="0 0 10 6">
+                            <polyline points="1 1 5 5 9 1"></polyline>
+                        </symbol>
+                    </svg>
+                </div>
+
+                <button class="confirm-button" id="fname-confirm-button" type="submit" name="change">
+                    <i class="fa-solid fa-circle-check"></i>
+                </button>
             </form>
         </div>
 
         <div>
             <h1>Contact Information</h1>
-            <label for="">Email</label>
-            <form action="" method="post">
-                <input type="email" name="" id="">
-            </form>
+            <!-- Email -->
+            <label for="" class="timestamp">Email</label>
+            <div style="display: flex; justify-content: space-between;">
+                <form action="" method="post">
+                    <a><?= $_SESSION['user']['email'] ?></a>
+                </form>
+            </div>
 
-            <label for="">Phone Number</label>
-            <form action="" method="post">
-                <input type="text" name="" id="">
-            </form>
+            <!-- Phone Number -->
+            <label for="" class="timestamp">Phone Number</label>
+            <div style="display: flex; justify-content: space-between;">
+                <form action="" method="post">
+                <a><?= $_SESSION['user']['phone_number'] ?></a>
+                </form>
+            </div>
         </div>
 
         <form action="" method="post">
