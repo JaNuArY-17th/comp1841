@@ -35,10 +35,10 @@ session_destroy();
                 </button>
                 <form class="form form-login" action="validateLogin.php" method="post">
                     <fieldset>
-                        <legend>Please, enter your email and password for login.</legend>
+                        <legend>Please, enter your username and password for login.</legend>
                         <div class="input-block">
-                            <label for="login-email">E-mail</label>
-                            <input id="login-email" name="email" type="email" required>
+                            <label for="login-username">E-mail</label>
+                            <input id="login-username" name="username" type="text" required>
                         </div>
                         <div class="input-block">
                             <label for="login-password">Password</label>

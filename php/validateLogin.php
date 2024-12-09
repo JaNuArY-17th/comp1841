@@ -1,13 +1,13 @@
 <?php 
 include "../includes/DatabaseConnection.php";
 
-$email = $_POST['email'];
+$username = $_POST['username'];
 $password = $_POST['password'];
 $password = md5($password);
 
-$sql = "SELECT * FROM users WHERE email = :email";
+$sql = "SELECT * FROM users WHERE username = :username";
 $statement = $pdo->prepare($sql);
-$statement->bindValue(':email', $email);
+$statement->bindValue(':username', $username);
 $statement->execute();
 
 $user = $statement->fetch();
@@ -16,10 +16,10 @@ if ($user && $password == $user['password']) {
     session_start();
     $_SESSION['Authorized'] = TRUE;
     $_SESSION['user'] = $user;
-    header("Location: index.php");
+    header("Location: ../php/index.php");
     exit;
 } else {
-    header("Location: login.php?error=Incorrect email or password");
+    header("Location: ../php/login.php?error=Incorrect username or password");
     exit;
 }
 ?>

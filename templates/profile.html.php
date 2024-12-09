@@ -18,105 +18,384 @@ require_once "../includes/check.php";
     </div>
 
     <div class="nav-bar">
-        <ul class="nav-bar-list">
-            <li>
-                <a href="">Edit Profile</a>
-            </li>
-            <li>
-                <a href="">Posts</a>
-            </li>
-            <li>
-                <a href="../php/addPost.php">Create</a>
-            </li>
-            <li>
-                <a href="">Comments</a>
-            </li>
-            <li>
-                <a href="">Upvoted</a>
-            </li>
-            <li>
-                <a href="">Downvoted</a>
-            </li>
-        </ul>
+        <div class="tab-list">
+            <button class="tablinks" onclick="openTab(event, 'editProfile')" id="defaultOpen">
+                Edit Profile
+            </button>
+            <button class="tablinks" onclick="openTab(event, 'posts')">
+                Posts
+            </button>
+            <a class="tablinks" href="../php/addPost.php">
+                Create
+            </a>
+            <button class="tablinks" onclick="openTab(event, 'comments')">
+                Comments
+            </button>
+            <button class="tablinks" onclick="openTab(event, 'upvoted')">
+                Upvoted
+            </button>
+            <button class="tablinks" onclick="openTab(event, 'downvoted')">
+                Downvoted
+            </button>
+        </div>
     </div>
 </div>
 
-<?php
-foreach ($posts as $post) {
-    ?>
+<!-- Edit Profile Tab -->
+<div id="editProfile" class="tabcontent" style="position: relative; top: 180px; z-index: 1;">
+    <div class="edit-profile">
+        <div class="personal-info">
+            <h1>Personal Information</h1>
+            <!-- First Name -->
+            <label for="" class="timestamp">First Name</label>
+            <div style="display: flex; justify-content: space-between;">
+                <form action="../php/edit-fname.php" method="post" id="fname-form">
+                    <a id="fname-current-input"><?= $_SESSION['user']['first_name'] ?></a>
+                    <input type="text" name="fname" id="fname-new-input">
+                    <input type="submit" name="confirm">
+                </form>
 
-    <div style="display:block; position: relative; top: 190px; z-index: 1;">
-    <div class="post">
-        <div class="post-header">
-            <a href="">
-                <div>
-                    <img class='avatar' src="../images/avatars/<?= $post['avatar'] ?>" />
-                </div>
-
-                <div>
-                    <span class="username"><?= $post['full_name'] ?></span>
-                    <span class="timestamp"><?= $post['post_date'] ?></span>
-                </div>
-            </a>
-
-            <div class="title-module">
-                <span class="title">
-                    <?= $post['title'] ?>
-                </span>
-                •
-                <span class="post-module">
-                    <?= $post['module_code'] ?>
-                    <?= $post['module_name'] ?>
-                </span>
-            </div>
-        </div>
-
-        <div class="post-content">
-            <p><?= $post['content'] ?></p>
-            <div class="image-container">
-                <img class="back-post-image" src="../images/posts/<?= $post['image_path'] ?? 'default_image.jpg' ?>" alt="">
-                <img class="post-image" src="../images/posts/<?= $post['image_path'] ?? 'default_image.jpg' ?>" alt="">
-            </div>
-        </div>
-
-        <div class="post-details" style="justify-content: space-between;">
-            <div style="display: flex; margin: 0px;">
-            <div class="up-down">
-                <button class="up-button" data-post-id="<?php echo $post['id']; ?>">
-                    <i class="fa-regular fa-circle-up"></i>
-                    <span id="up-count-<?php echo $post['id']; ?>">
-                        <?php echo $post['upvote'] ?? 0; ?>
-                    </span>
-                </button>
-                <button class="down-button" data-post-id="<?php echo $post['id']; ?>">
-                    <i class="fa-regular fa-circle-down"></i>
-                    <span id="down-count-<?php echo $post['id']; ?>">
-                        <?php echo $post['downvote'] ?? 0; ?>
-                    </span>
-                </button>
-            </div>
-
-            <div>
-                <button><i class="fa-regular fa-comment"></i> <?= $post['n_comments'] ?? 0 ?></button>
-            </div>
-
-            <div>
-                <button><i class="fa-regular fa-share-from-square"></i> <?= $post['n_shares'] ?? 0 ?></button>
-            </div>
-            </div>
-
-            <div style="margin-right: 10px;">
-                <a href="delete-post.php">
-                    <button id="deleteButton" class="delete-button">
-                                <i class="fa-solid fa-trash-can"></i>
+                <div style="display: flex;">
+                    <button class="edit-button" id="fname-edit-button">
+                        <i class="fa-solid fa-pen-to-square"></i>
                     </button>
+
+                    <button class="discard-button" id="fname-discard-button">
+                        <i class="fa-solid fa-circle-xmark"></i>
+                    </button>
+
+                    <button class="confirm-button" id="fname-confirm-button">
+                        <i class="fa-solid fa-circle-check"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Middle Name -->
+            <label for="" class="timestamp">Middle Name</label>
+            <div style="display: flex; justify-content: space-between;">
+                <form action="../php/edit-mname.php" method="post" id="mname-form">
+                    <a id="mname-current-input"><?= $_SESSION['user']['middle_name'] ?? "<p> </p>" ?></a>
+                    <input type="text" name="mname" id="mname-new-input">
+                    <input type="submit" name="confirm">
+                </form>
+
+                <div style="display: flex;">
+                    <button class="edit-button" id="mname-edit-button">
+                        <i class="fa-solid fa-pen-to-square"></i>
+                    </button>
+
+                    <button class="discard-button" id="mname-discard-button">
+                        <i class="fa-solid fa-circle-xmark"></i>
+                    </button>
+
+                    <button class="confirm-button" id="mname-confirm-button">
+                        <i class="fa-solid fa-circle-check"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Last Name -->
+            <label for="" class="timestamp">Last Name</label>
+            <div style="display: flex; justify-content: space-between;">
+                <form action="../php/edit-lname.php" method="post" id="lname-form">
+                    <a id="lname-current-input"><?= $_SESSION['user']['last_name'] ?></a>
+                    <input type="text" name="lname" id="lname-new-input">
+                    <input type="submit" name="confirm">
+                </form>
+
+                <div style="display: flex;">
+                    <button class="edit-button" id="lname-edit-button">
+                        <i class="fa-solid fa-pen-to-square"></i>
+                    </button>
+
+                    <button class="discard-button" id="lname-discard-button">
+                        <i class="fa-solid fa-circle-xmark"></i>
+                    </button>
+
+                    <button class="confirm-button" id="lname-confirm-button">
+                        <i class="fa-solid fa-circle-check"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Avatar -->
+            <label for="" class="timestamp">Avatar</label>
+            <form action="../php/edit-avatar.php" method="post" enctype="multipart/form-data" style="margin-top: 5px;">
+                <div class="upload-container">
+                    <input type="file" id="fileInput" class="file-input" name="image_path" accept="image/*" />
+                    <label for="fileInput" class="upload-label">
+                        <span>Upload avatar</span>
+                        <div class="upload-icon">
+                            <i class="fa-solid fa-upload"></i>
+                        </div>
+                    </label>
+                    <div class="preview-wrapper">
+                        <img id="blurredBackground" class="blurred-background" style="display: none;"
+                            alt="Blurred Background" />
+                        <img id="imagePreview" class="image-preview" style="display: none;" alt="Image Preview" />
+                        <button id="deleteButton" class="delete-button" style="display: none;">
+                            <i class="fa-solid fa-trash-can"></i>
+                        </button>
+
+                        <button id="acceptButton" class="delete-button" type="submit" style="display: none; left: 8px" name="accept">
+                            <i class="fa-solid fa-circle-check"></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+
+            <label for="" class="timestamp">Sex</label>
+            <form action="" method="post">
+
+            </form>
+        </div>
+
+        <div>
+            <h1>Contact Information</h1>
+            <label for="">Email</label>
+            <form action="" method="post">
+                <input type="email" name="" id="">
+            </form>
+
+            <label for="">Phone Number</label>
+            <form action="" method="post">
+                <input type="text" name="" id="">
+            </form>
+        </div>
+
+        <form action="" method="post">
+
+        </form>
+    </div>
+</div>
+
+<!-- Posts Tab -->
+<div id="posts" class="tabcontent" style="position: relative; top: 180px; z-index: 1;">
+    <?php
+    foreach ($posts as $post) {
+        ?>
+        <div class="post">
+            <div class="post-header">
+                <a href="">
+                    <div>
+                        <img class='avatar' src="../images/avatars/<?= $post['avatar'] ?>" />
+                    </div>
+
+                    <div>
+                        <span class="username"><?= $post['full_name'] ?></span>
+                        <span class="timestamp"><?= $post['post_date'] ?></span>
+                    </div>
                 </a>
 
+                <div class="title-module">
+                    <span class="title">
+                        <?= $post['title'] ?>
+                    </span>
+                    •
+                    <span class="post-module">
+                        <?= $post['module_code'] ?>
+                        <?= $post['module_name'] ?>
+                    </span>
+                </div>
+            </div>
+
+            <div class="post-content">
+                <p><?= $post['content'] ?></p>
+                <div class="image-container">
+                    <img class="back-post-image" src="../images/posts/<?= $post['image_path'] ?? 'default_image.jpg' ?>"
+                        alt="">
+                    <img class="post-image" src="../images/posts/<?= $post['image_path'] ?? 'default_image.jpg' ?>" alt="">
+                </div>
+            </div>
+
+            <div class="post-details" style="justify-content: space-between;">
+                <div style="display: flex; margin: 0px;">
+                    <div class="up-down">
+                        <button class="up-button" data-post-id="<?php echo $post['id']; ?>">
+                            <i class="fa-regular fa-circle-up"></i>
+                            <span id="up-count-<?php echo $post['id']; ?>">
+                                <?php echo $post['upvote'] ?? 0; ?>
+                            </span>
+                        </button>
+                        <button class="down-button" data-post-id="<?php echo $post['id']; ?>">
+                            <i class="fa-regular fa-circle-down"></i>
+                            <span id="down-count-<?php echo $post['id']; ?>">
+                                <?php echo $post['downvote'] ?? 0; ?>
+                            </span>
+                        </button>
+                    </div>
+
+                    <div>
+                        <button><i class="fa-regular fa-comment"></i> <?= $post['n_comments'] ?? 0 ?></button>
+                    </div>
+
+                    <div>
+                        <button><i class="fa-regular fa-share-from-square"></i> <?= $post['n_shares'] ?? 0 ?></button>
+                    </div>
+                </div>
+
+                <div class="post-tool">
+                    <button type="button" data-toggle="modal" data-target="#myModal">
+                        <i class="fa-solid fa-pen-to-square"></i>
+                    </button>
+
+                    <form action="../php/delete-post.php" method="post"
+                        onsubmit="return confirm('Are you sure to delete this post?');">
+                        <input type="hidden" name="id" value="<?= $post['id'] ?>">
+                        <button type="submit">
+                            <i class="fa-solid fa-trash-can"></i>
+                        </button>
+                    </form>
+                </div>
             </div>
         </div>
+        <hr>
+        <?php
+    }
+    ?>
+</div>
+
+<div id="comments" class="tabcontent"></div>
+
+<div id="upvoted" class="tabcontent"></div>
+
+<div id="downvoted" class="tabcontent"></div>
+
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg">
+
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Modal Header</h4>
+            </div>
+            <div class="modal-body">
+                <p>Some text in the modal.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
     </div>
-    <hr>
-    </div>
-<?php
-}
-?>
+</div>
+
+<script>
+    document.getElementById("defaultOpen").click();
+
+    function openTab(evt, tabName) {
+        var i, tabcontent, tablinks;
+
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+
+        document.getElementById(tabName).style.display = "block";
+        evt.currentTarget.className += " active";
+    }
+
+    // First Name
+    document.getElementById('fname-edit-button').addEventListener('click', function () {
+        var currentInput = document.getElementById('fname-current-input');
+        var newInput = document.getElementById('fname-new-input');
+        currentInput.style.display = 'none';
+        newInput.style.display = 'inline-block';
+        newInput.focus();
+    });
+
+    document.getElementById('fname-discard-button').addEventListener('click', function () {
+        var currentInput = document.getElementById('fname-current-input');
+        var newInput = document.getElementById('fname-new-input');
+        currentInput.style.display = 'inline-block';
+        newInput.style.display = 'none';
+        newInput.value = "";
+    });
+
+    document.getElementById('fname-confirm-button').addEventListener('click', function () {
+        var form = document.getElementById('fname-form');
+        var newInput = document.getElementById('fname-new-input').value.trim();
+        var pattern = /^[a-zA-Z\s]+$/;
+
+        if (newInput == "" || newInput == null) {
+            alert("Please enter a new first name.");
+            return false;
+        } else if (!pattern.test(newInput)) {
+            alert("First name can only contain alphabets and spaces.");
+            return false;
+        } else {
+            form.submit();
+        }
+    });
+
+
+    // Middle Name
+    document.getElementById('mname-edit-button').addEventListener('click', function () {
+        var currentInput = document.getElementById('mname-current-input');
+        var newInput = document.getElementById('mname-new-input');
+        currentInput.style.display = 'none';
+        newInput.style.display = 'inline-block';
+        newInput.focus();
+    });
+
+    document.getElementById('mname-discard-button').addEventListener('click', function () {
+        var currentInput = document.getElementById('mname-current-input');
+        var newInput = document.getElementById('mname-new-input');
+        currentInput.style.display = 'inline-block';
+        newInput.style.display = 'none';
+        newInput.value = "";
+    });
+
+    document.getElementById('mname-confirm-button').addEventListener('click', function () {
+        var form = document.getElementById('mname-form');
+        var newInput = document.getElementById('mname-new-input').value.trim();
+        var pattern = /^[a-zA-Z\s]+$/;
+
+        if (newInput != "" && !pattern.test(newInput)) {
+            alert("Middle name can only contain alphabets and spaces.");
+            return false;
+        } else {
+            form.submit();
+        }
+    });
+
+    // Last Name
+    document.getElementById('lname-edit-button').addEventListener('click', function () {
+        var currentInput = document.getElementById('lname-current-input');
+        var newInput = document.getElementById('lname-new-input');
+        currentInput.style.display = 'none';
+        newInput.style.display = 'inline-block';
+        newInput.focus();
+    });
+
+    document.getElementById('lname-discard-button').addEventListener('click', function () {
+        var currentInput = document.getElementById('lname-current-input');
+        var newInput = document.getElementById('lname-new-input');
+        currentInput.style.display = 'inline-block';
+        newInput.style.display = 'none';
+        newInput.value = "";
+    });
+
+    document.getElementById('lname-confirm-button').addEventListener('click', function () {
+        var form = document.getElementById('lname-form');
+        var newInput = document.getElementById('lname-new-input').value.trim();
+        var pattern = /^[a-zA-Z\s]+$/;
+
+        if (newInput == "" || newInput == null) {
+            alert("Please enter a new last name.");
+            return false;
+        } else if (!pattern.test(newInput)) {
+            alert("Last name can only contain alphabets and spaces.");
+            return false;
+        } else {
+            form.submit();
+        }
+    });
+</script>
+<script src="../js/add_post.js"></script>
+<script src="../js/bootstrap.js"></script>

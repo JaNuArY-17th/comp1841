@@ -27,7 +27,7 @@ label {
 
 #title,
 #content {
-    width: 100%;
+    width: 90%;
     max-width: 100%;
     padding: 20px;
     border: 1px solid #dddddd7c;
@@ -37,7 +37,7 @@ label {
 }
 
 #title {
-    height: 50px;
+    height: 30px;
 }
 
 #title:hover,

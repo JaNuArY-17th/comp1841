@@ -8,9 +8,12 @@ require_once "../includes/check.php";
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= $title ?></title>
-    <link rel="stylesheet" href="../style/layout-styles.css?version=19">
+    <link rel="stylesheet" href="../style/bootstrap.css">
+    <link rel="stylesheet" href="../style/layout-styles.css?version=28">
+    <link rel="stylesheet" href="../style/edit-post.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://kit.fontawesome.com/fd40214cfa.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
 <body>
     <header>
@@ -30,15 +33,13 @@ require_once "../includes/check.php";
         </div>
                 
         <div class="profile">
-            <div class="add-post">
-                <a href="addPost.php"><i class="fa-solid fa-plus"></i> Create</a>
-            </div>
+            <a class="add-post" href="addPost.php"><i class="fa-solid fa-plus"></i> Create</a>
 
             <img class='header-avatar' src="../images/avatars/<?= $_SESSION['user']['avatar'] ?>"/>
             <div class="avatar-hover-box">
                 <ul>
                     <li>
-                        <a href="profile.php" style="display: flex;">
+                        <a href="../php/profile.php" style="display: flex;">
                             <div>
                                 <img class='avatar' src="../images/avatars/<?= $_SESSION['user']['avatar'] ?>"/>
                             </div>
@@ -58,28 +59,23 @@ require_once "../includes/check.php";
     <main>
         <aside class="sidebar">
             <div class="home">
-                <blockquote><a href="home.php" style="padding-left: 10px;"><i class="fa-solid fa-house"></i> Home</a></blockquote>
-                <blockquote><a href="" style="padding-left: 10px;"><i class="fa-solid fa-arrow-trend-up"></i> Popular</a></blockquote>
+                <a href="home.php" style="padding-left: 10px;"><i class="fa-solid fa-house"></i> Home</a>
+                <a href="" style="padding-left: 10px;"><i class="fa-solid fa-arrow-trend-up"></i> Popular</a>
             </div>
             <hr>
-
             <p style="margin-left: 45px; margin-bottom: 10px; font-size: smaller; color: #748791;">MODULES</h1>
             <div class="modules">
                 <?php 
                     include "../includes/DatabaseConnection.php";
-
                     $sql = "SELECT * FROM modules";
                     $modules = $pdo->query($sql);
-
                     foreach($modules as $module) {
                 ?>
-                <blockquote>
                     <a href="#">
                         <?= $module['module_code'] ?>
                         <br>
                         <?= $module['module_name'] ?>
                     </a>
-                </blockquote>
                 <?php 
                     }
                 ?>
@@ -95,6 +91,7 @@ require_once "../includes/check.php";
         </aside>
     </main>
     <script src="../js/script.js"></script>
+
 </body>
 </html>
 

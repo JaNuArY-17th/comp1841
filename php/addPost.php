@@ -28,7 +28,7 @@ if(isset($_POST['post'])) {
     $arr2 = array(":module", ":user", ":title", ":content", ":image_path", ":post_date");
     test($pdo, $sql, $arr1, $arr2);
 
-    header("location: home.php");
+    header("location: ../php/home.php");
 
 } else {
     $sql = "SELECT * FROM modules";
