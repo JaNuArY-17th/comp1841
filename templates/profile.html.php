@@ -134,10 +134,6 @@ require_once "../includes/check.php";
                             alt="Blurred Background" />
                         <img id="imagePreview" class="image-preview" style="display: none;" alt="Image Preview" />
 
-                        <button id="deleteButton" class="delete-button" style="display: none;" type="none">
-                            <i class="fa-solid fa-trash-can"></i>
-                        </button>
-
                         <button id="acceptButton" class="delete-button" type="submit" style="display: none; left: 8px"
                             name="accept">
                             <i class="fa-solid fa-circle-check"></i>
@@ -145,6 +141,9 @@ require_once "../includes/check.php";
                     </div>
                 </div>
             </form>
+            <button id="deleteButton" class="delete-button" style="display: none;" type="none">
+                <i class="fa-solid fa-trash-can"></i>
+            </button>
 
             <label for="" class="timestamp">Gender</label>
             <form action="../php/edit-gender.php" method="post"
@@ -181,23 +180,51 @@ require_once "../includes/check.php";
             <!-- Email -->
             <label for="" class="timestamp">Email</label>
             <div style="display: flex; justify-content: space-between;">
-                <form action="" method="post">
-                    <a><?= $_SESSION['user']['email'] ?></a>
+                <form action="../php/edit-email.php" method="post" id="email-form">
+                    <a id="email-current-input"><?= $_SESSION['user']['email'] ?></a>
+                    <input type="text" name="email" id="email-new-input">
+                    <input type="submit" name="confirm" id="edit-email-confirm">
                 </form>
+
+                <div style="display: flex;">
+                    <button class="edit-button" id="email-edit-button">
+                        <i class="fa-solid fa-pen-to-square"></i>
+                    </button>
+
+                    <button class="discard-button" id="email-discard-button">
+                        <i class="fa-solid fa-circle-xmark"></i>
+                    </button>
+
+                    <button class="confirm-button" id="email-confirm-button">
+                        <i class="fa-solid fa-circle-check"></i>
+                    </button>
+                </div>
             </div>
 
             <!-- Phone Number -->
             <label for="" class="timestamp">Phone Number</label>
             <div style="display: flex; justify-content: space-between;">
-                <form action="" method="post">
-                    <a><?= $_SESSION['user']['phone_number'] ?></a>
+                <form action="../php/edit-phone.php" method="post" id="phone-form">
+                    <a id="phone-current-input"><?= $_SESSION['user']['phone_number'] ?></a>
+                    <input type="text" name="phone" id="phone-new-input">
+                    <input type="submit" name="confirm" id="edit-phone-confirm">
                 </form>
+
+                <div style="display: flex;">
+                    <button class="edit-button" id="phone-edit-button">
+                        <i class="fa-solid fa-pen-to-square"></i>
+                    </button>
+
+                    <button class="discard-button" id="phone-discard-button">
+                        <i class="fa-solid fa-circle-xmark"></i>
+                    </button>
+
+                    <button class="confirm-button" id="phone-confirm-button">
+                        <i class="fa-solid fa-circle-check"></i>
+                    </button>
+                </div>
             </div>
         </div>
-
-        <form action="" method="post">
-
-        </form>
     </div>
 </div>
 
@@ -303,77 +330,34 @@ require_once "../includes/check.php";
                     <i class="fa-solid fa-circle-xmark"></i>
                 </button>
             </div>
+
             <div class="modal-body">
-                <div class="edit-post">
-                    <!-- Title -->
-                    <label for="" class="timestamp">Title</label>
-                    <div style="display: flex; justify-content: space-between;">
-                        <form action="../php/edit-post-title.php" method="post" id="title-form">
-                            <a id="title-current-input"></a>
-                            <input type="hidden" name="post-id" id="post-id-title">
-                            <input type="text" name="title" id="title-new-input">
-                        </form>
-
-                        <div style="display: flex;">
-                            <button class="edit-button" id="title-edit-button">
-                                <i class="fa-solid fa-pen-to-square"></i>
-                            </button>
-
-                            <button class="discard-button" id="title-discard-button">
-                                <i class="fa-solid fa-circle-xmark"></i>
-                            </button>
-
-                            <!-- <button class="confirm-button" id="title-confirm-button">
-                                <i class="fa-solid fa-circle-check"></i>
-                            </button> -->
-                        </div>
+                <form action="../php/edit-post.php" method="post" id="edit-post" style="flex-direction: column;"
+                    enctype="multipart/form-data">
+                    <input type="hidden" name="post-id" id="post-id">
+                    <div>
+                        <label for="" class="timestamp">Title</label>
+                        <input type="text" name="title" id="title-new-input">
                     </div>
 
-                    <!-- Content -->
-                    <label for="" class="timestamp">Content</label>
-                    <div style="display: flex; justify-content: space-between;">
-                        <form action="../php/edit-post-content.php" method="post" id="content-form">
-                            <a id="content-current-input"></a>
-                            <input type="hidden" name="post-id" id="post-id-content">
-                            <textarea type="text" name="content" id="content-new-input"></textarea>
-                        </form>
-
-                        <div style="display: flex;">
-                            <button class="edit-button" id="content-edit-button">
-                                <i class="fa-solid fa-pen-to-square"></i>
-                            </button>
-
-                            <button class="discard-button" id="content-discard-button">
-                                <i class="fa-solid fa-circle-xmark"></i>
-                            </button>
-
-                            <!-- <button class="confirm-button" id="content-confirm-button">
-                                <i class="fa-solid fa-circle-check"></i>
-                            </button> -->
-                        </div>
+                    <div>
+                        <label for="" class="timestamp">Content</label>
+                        <textarea type="text" name="content" id="content-new-input"></textarea>
                     </div>
 
-                    <!-- Image -->
-                    <label for="" class="timestamp">Image</label>
-                    <div style="display: flex; justify-content: space-between;">
-                        <form action="../php/edit-post-image.php" method="post" id="image-form"
-                            enctype="multipart/form-data">
-                            <input type="hidden" name="post-id" id="post-id-image">
-                            <input type="file" name="image" id="image-new-input" accept="image/*"
-                                style="display: inline-block;">
-                        </form>
-
-                        <div style="display: flex;">
-                            <button class="discard-button" id="image-discard-button">
-                                <i class="fa-solid fa-circle-xmark"></i>
+                    <div>
+                        <label for="" class="timestamp">Image</label>
+                        <div style="display: flex; justify-conter: space-between; align-items: center;">
+                            <input type="file" name="image" id="image-new-input" accept="image/*">
+                            <button type="button" id="discard-image-button" class="discard-button">
+                                <i class="fa-solid fa-trash-can"></i>
                             </button>
-
-                            <!-- <button class="confirm-button" id="image-confirm-button">
-                                <i class="fa-solid fa-circle-check"></i>
-                            </button> -->
                         </div>
+
                     </div>
-                </div>
+                </form>
+
+
             </div>
 
             <div class="modal-footer">
@@ -502,62 +486,136 @@ require_once "../includes/check.php";
         }
     });
 
-    // Post Title
-    document.getElementById('title-edit-button').addEventListener('click', function () {
-        var currentInput = document.getElementById('title-current-input');
-        var newInput = document.getElementById('title-new-input');
+    // Email
+    document.getElementById('email-edit-button').addEventListener('click', function () {
+        var currentInput = document.getElementById('email-current-input');
+        var newInput = document.getElementById('email-new-input');
         currentInput.style.display = 'none';
         newInput.style.display = 'inline-block';
         newInput.focus();
     });
 
-    document.getElementById('title-discard-button').addEventListener('click', function () {
-        var currentInput = document.getElementById('title-current-input');
-        var newInput = document.getElementById('title-new-input');
+    document.getElementById('email-discard-button').addEventListener('click', function () {
+        var currentInput = document.getElementById('email-current-input');
+        var newInput = document.getElementById('email-new-input');
         currentInput.style.display = 'inline-block';
         newInput.style.display = 'none';
         newInput.value = "";
     });
 
+    document.getElementById('email-confirm-button').addEventListener('click', function () {
+        var confirm = document.getElementById('edit-email-confirm');
+        confirm.click();
+    });
+
+    document.getElementById('email-form').addEventListener('submit', function (e) {
+        e.preventDefault(); // Prevent default form submission
+
+        const emailInput = document.getElementById('email-new-input');
+        const email = emailInput.value;
+
+        if (!email) {
+            alert("Please enter an email.");
+            return;
+        }
+
+        // AJAX request to check if email exists
+        fetch('../php/check-email.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: new URLSearchParams({ email: email })
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.exists) {
+                    alert("Email already exists.");
+                } else if (data.error) {
+                    alert(`Error: ${data.error}`);
+                } else {
+                    e.target.submit(); // Submit the form programmatically
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert("An error occurred while checking the email.");
+            });
+    });
+
+    // Phone Number
+    document.getElementById('phone-edit-button').addEventListener('click', function () {
+        var currentInput = document.getElementById('phone-current-input');
+        var newInput = document.getElementById('phone-new-input');
+        currentInput.style.display = 'none';
+        newInput.style.display = 'inline-block';
+        newInput.focus();
+    });
+
+    document.getElementById('phone-discard-button').addEventListener('click', function () {
+        var currentInput = document.getElementById('phone-current-input');
+        var newInput = document.getElementById('phone-new-input');
+        currentInput.style.display = 'inline-block';
+        newInput.style.display = 'none';
+        newInput.value = "";
+    });
+
+    document.getElementById('phone-confirm-button').addEventListener('click', function () {
+        var confirm = document.getElementById('edit-phone-confirm');
+        confirm.click();
+    });
+
+    document.getElementById('phone-form').addEventListener('submit', function (e) {
+        e.preventDefault(); // Prevent default form submission
+
+        const phoneInput = document.getElementById('phone-new-input');
+        const phone = phoneInput.value;
+
+        if (!phone) {
+            alert("Please enter a phone number.");
+            return;
+        }
+
+        // AJAX request to check if email exists
+        fetch('../php/check-phone.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: new URLSearchParams({ phone: phone })
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.exists) {
+                    alert("Phone number already exists.");
+                } else if (data.error) {
+                    alert(`Error: ${data.error}`);
+                } else {
+                    e.target.submit(); // Submit the form programmatically
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert("An error occurred while checking the email.");
+            });
+    });
+
+    // Post 
     document.getElementById('confirm-button').addEventListener('click', function () {
-        var titleForm = document.getElementById('title-form');
-        var contentForm = document.getElementById('content-form');
-        var imageForm = document.getElementById('image-form');
+        var editPost = document.getElementById('edit-post');
         var newTitle = document.getElementById('title-new-input').value.trim();
         var newContent = document.getElementById('content-new-input').value.trim();
         var newImage = document.getElementById('image-new-input').files[0];
 
-        // if (newTitle == "" || newContent == "") {
-        //     alert("Please enter");
-        //     return false;
-        // } else {
-            titleForm.submit();
-            contentForm.submit();
-            imageForm.submit();
-        // }
-    });
-
-    // Post Content
-    document.getElementById('content-edit-button').addEventListener('click', function () {
-        var currentInput = document.getElementById('content-current-input');
-        var newInput = document.getElementById('content-new-input');
-        currentInput.style.display = 'none';
-        newInput.style.display = 'inline-block';
-        newInput.focus();
-    });
-
-    document.getElementById('content-discard-button').addEventListener('click', function () {
-        var currentInput = document.getElementById('content-current-input');
-        var newInput = document.getElementById('content-new-input');
-        currentInput.style.display = 'inline-block';
-        newInput.style.display = 'none';
-        newInput.value = "";
+        if (newTitle == "" && newContent == "") {
+            alert("Please enter new Title and new Content");
+            return false;
+        } else {
+            editPost.submit();
+        }
     });
 
     // Post Image
-    var deleteImage = document.getElementById('image-discard-button');
+    var discardImage = document.getElementById('discard-image-button');
     var imageInput = document.getElementById('image-new-input');
-    deleteImage.addEventListener('click', () => {
+
+    discardImage.addEventListener('click', () => {
         imageInput.value = '';
     });
 
@@ -567,17 +625,15 @@ require_once "../includes/check.php";
     for (var i = 0; i < btn.length; i++) {
         btn[i].onclick = function () {
             var id = this.getAttribute('data-post-id');
-            var title = this.getAttribute('data-post-title');
-            var content = this.getAttribute('data-post-content');
-            document.getElementById('title-current-input').innerHTML = title;
-            document.getElementById('content-current-input').innerHTML = content;
-            var postIDtitle = document.getElementById('post-id-title');
-            var postIDcontent = document.getElementById('post-id-content');
-            var postIDimage =document.getElementById('post-id-image');
-            postIDtitle.value = id;
-            postIDcontent.value = id;
-            postIDimage.value = id;
-            console.log(postIDtitle.value, postIDcontent.value, postIDimage.value);
+            var currentTitle = this.getAttribute('data-post-title');
+            var currentContent = this.getAttribute('data-post-content');
+
+            var postID = document.getElementById('post-id');
+            var title = document.getElementById('title-new-input');
+            var content = document.getElementById('content-new-input')
+            title.value = currentTitle;
+            content.value = currentContent;
+            postID.value = id;
             modal.style.display = "block";
         }
     }

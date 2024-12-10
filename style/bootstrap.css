@@ -165,21 +165,27 @@
 .confirm {
   float: right;
 }
-.edit-post form {
+.modal-body form {
   display: flex;
-  align-items: center;
+  align-items: left;
   margin-bottom: 30px;
 }
-
-.edit-post form a {
+.modal-bodyform div{
+  width: 400px;
+  padding-bottom: 20px;
+}
+.modal-bodyform a {
   position: relative;
   margin: 10px;
 }
-
-.edit-post form input, textarea {
-  display: none;
+.tool-buttons div {
+  padding-bottom: 20px;
+}
+.modal-body form input, textarea {
   position: relative;
-  width: 400px;
+  width: 530px;
+  max-width: 530px;
+  max-height: 200px;
   margin: 3px;
   padding: 8px;
   border: 1px solid #dddddd7c;
@@ -187,7 +193,6 @@
   background-color: #28282800;
   color: #fff;
 }
-
-.edit-post form textarea {
+.modal-body form textarea {
   height: 170px;
 }

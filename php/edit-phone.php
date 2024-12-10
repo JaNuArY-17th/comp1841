@@ -5,15 +5,15 @@ include '../includes/DatabaseConnection.php';
 include '../includes/test.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $email = $_POST['email'];
+    $phone = $_POST['phone'];
     $id = $_SESSION['user']['id'];
 
     $sql = "UPDATE users
-            SET email = :email
+            SET phone_number = :phone
             WHERE id = :id";
 
-    $arr1 = array($email, $id);
-    $arr2 = array(":email", ":id");
+    $arr1 = array($phone, $id);
+    $arr2 = array(":phone", ":id");
     test($pdo, $sql, $arr1, $arr2);
 
     $sql = "SELECT * FROM users WHERE id = :id";

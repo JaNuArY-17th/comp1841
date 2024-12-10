@@ -646,6 +646,10 @@ ul {
     transition: background-color 0.3s ease;
 }
 
+#deleteButton {
+    top: 337px;
+}
+
 .delete-button:hover {
     background-color: #0e11136e;
 }

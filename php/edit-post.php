@@ -1,10 +1,12 @@
-<?php
+<?php 
 require_once "../includes/check.php";
 
 include '../includes/DatabaseConnection.php';
 include '../includes/test.php';
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST['title'] != '') {
+    $title = $_POST['title'];
+    $content = $_POST['content'];
     $id = $_POST['post-id'];
 
     $image_path = NULL;
@@ -15,11 +17,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     $sql = "UPDATE posts
-    SET image_path = :image_path
-    WHERE id = :id";
+            SET title = :title,
+                content = :content,
+                image_path = :image_path
+            WHERE id = :id";
 
-    $arr1 = array($image_path, $id);
-    $arr2 = array(":image_path", ":id");
+    $arr1 = array($title, $content, $image_path, $id);
+    $arr2 = array(":title", ":content", ":image_path", ":id");
     test($pdo, $sql, $arr1, $arr2);
 
     header("location: ../php/profile.php");
