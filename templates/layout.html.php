@@ -8,7 +8,7 @@ require_once "../includes/check.php";
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= $title ?></title>
-    <link rel="stylesheet" href="../style/bootstrap.css?version=5">
+    <link rel="stylesheet" href="../style/bootstrap.css?version=6">
     <link rel="stylesheet" href="../style/layout-styles.css?version=31">
     <link rel="stylesheet" href="../style/edit-post.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -59,8 +59,9 @@ require_once "../includes/check.php";
     <main>
         <aside class="sidebar">
             <div class="home">
-                <a href="home.php" style="padding-left: 10px;"><i class="fa-solid fa-house"></i> Home</a>
-                <a href="" style="padding-left: 10px;"><i class="fa-solid fa-arrow-trend-up"></i> Popular</a>
+                <a href="../php/home.php" style="padding-left: 10px;"><i class="fa-solid fa-house"></i> Home</a>
+                <a href="../php/popular.php" style="padding-left: 10px;"><i class="fa-solid fa-arrow-trend-up"></i> Popular</a>
+                <a href="../php/feedback.php" style="padding-left: 10px;"><i class="fa-solid fa-comments"></i> Feedback</a>
             </div>
             <hr>
             <p style="margin-left: 45px; margin-bottom: 10px; font-size: smaller; color: #748791;">MODULES</h1>

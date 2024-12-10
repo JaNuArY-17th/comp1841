@@ -1,10 +1,9 @@
-
 .modal-open {
   overflow: hidden;
 }
 .modal {
   position: fixed;
-  top: 30%;
+  top: 20%;
   right: 0;
   bottom: 0;
   left: 0;
@@ -40,7 +39,7 @@
 }
 .modal-content {
   position: relative;
-  background-color: #ffffff;
+  background-color: #04090A;
   -webkit-background-clip: padding-box;
   background-clip: padding-box;
   border: 1px solid #999999;
