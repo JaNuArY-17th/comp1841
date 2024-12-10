@@ -190,7 +190,7 @@ require_once "../includes/check.php";
             <label for="" class="timestamp">Phone Number</label>
             <div style="display: flex; justify-content: space-between;">
                 <form action="" method="post">
-                <a><?= $_SESSION['user']['phone_number'] ?></a>
+                    <a><?= $_SESSION['user']['phone_number'] ?></a>
                 </form>
             </div>
         </div>
@@ -267,7 +267,9 @@ require_once "../includes/check.php";
                 </div>
 
                 <div class="post-tool">
-                    <button type="button" data-toggle="modal" data-target="#myModal">
+                    <button type="button" data-toggle="modal" data-target="#myModal" class="edit"
+                        data-post-id="<?php echo $post['id']; ?>" data-post-title="<?php echo $post['title']; ?>"
+                        data-post-content="<?php echo $post['content']; ?>">
                         <i class="fa-solid fa-pen-to-square"></i>
                     </button>
 
@@ -295,20 +297,91 @@ require_once "../includes/check.php";
 
 <div id="myModal" class="modal fade" role="dialog">
     <div class="modal-dialog modal-lg">
-
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Modal Header</h4>
+                <button type="button" class="close" data-dismiss="modal">
+                    <i class="fa-solid fa-circle-xmark"></i>
+                </button>
             </div>
             <div class="modal-body">
-                <p>Some text in the modal.</p>
+                <div class="edit-post">
+                    <!-- Title -->
+                    <label for="" class="timestamp">Title</label>
+                    <div style="display: flex; justify-content: space-between;">
+                        <form action="../php/edit-post-title.php" method="post" id="title-form">
+                            <a id="title-current-input"></a>
+                            <input type="hidden" name="post-id" id="post-id-title">
+                            <input type="text" name="title" id="title-new-input">
+                        </form>
+
+                        <div style="display: flex;">
+                            <button class="edit-button" id="title-edit-button">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                            </button>
+
+                            <button class="discard-button" id="title-discard-button">
+                                <i class="fa-solid fa-circle-xmark"></i>
+                            </button>
+
+                            <!-- <button class="confirm-button" id="title-confirm-button">
+                                <i class="fa-solid fa-circle-check"></i>
+                            </button> -->
+                        </div>
+                    </div>
+
+                    <!-- Content -->
+                    <label for="" class="timestamp">Content</label>
+                    <div style="display: flex; justify-content: space-between;">
+                        <form action="../php/edit-post-content.php" method="post" id="content-form">
+                            <a id="content-current-input"></a>
+                            <input type="hidden" name="post-id" id="post-id-content">
+                            <textarea type="text" name="content" id="content-new-input"></textarea>
+                        </form>
+
+                        <div style="display: flex;">
+                            <button class="edit-button" id="content-edit-button">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                            </button>
+
+                            <button class="discard-button" id="content-discard-button">
+                                <i class="fa-solid fa-circle-xmark"></i>
+                            </button>
+
+                            <!-- <button class="confirm-button" id="content-confirm-button">
+                                <i class="fa-solid fa-circle-check"></i>
+                            </button> -->
+                        </div>
+                    </div>
+
+                    <!-- Image -->
+                    <label for="" class="timestamp">Image</label>
+                    <div style="display: flex; justify-content: space-between;">
+                        <form action="../php/edit-post-image.php" method="post" id="image-form"
+                            enctype="multipart/form-data">
+                            <input type="hidden" name="post-id" id="post-id-image">
+                            <input type="file" name="image" id="image-new-input" accept="image/*"
+                                style="display: inline-block;">
+                        </form>
+
+                        <div style="display: flex;">
+                            <button class="discard-button" id="image-discard-button">
+                                <i class="fa-solid fa-circle-xmark"></i>
+                            </button>
+
+                            <!-- <button class="confirm-button" id="image-confirm-button">
+                                <i class="fa-solid fa-circle-check"></i>
+                            </button> -->
+                        </div>
+                    </div>
+                </div>
             </div>
+
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button class="confirm" id="confirm-button">
+                    <i class="fa-solid fa-circle-check"></i>
+                </button>
             </div>
         </div>
-
     </div>
 </div>
 
@@ -428,6 +501,87 @@ require_once "../includes/check.php";
             form.submit();
         }
     });
+
+    // Post Title
+    document.getElementById('title-edit-button').addEventListener('click', function () {
+        var currentInput = document.getElementById('title-current-input');
+        var newInput = document.getElementById('title-new-input');
+        currentInput.style.display = 'none';
+        newInput.style.display = 'inline-block';
+        newInput.focus();
+    });
+
+    document.getElementById('title-discard-button').addEventListener('click', function () {
+        var currentInput = document.getElementById('title-current-input');
+        var newInput = document.getElementById('title-new-input');
+        currentInput.style.display = 'inline-block';
+        newInput.style.display = 'none';
+        newInput.value = "";
+    });
+
+    document.getElementById('confirm-button').addEventListener('click', function () {
+        var titleForm = document.getElementById('title-form');
+        var contentForm = document.getElementById('content-form');
+        var imageForm = document.getElementById('image-form');
+        var newTitle = document.getElementById('title-new-input').value.trim();
+        var newContent = document.getElementById('content-new-input').value.trim();
+        var newImage = document.getElementById('image-new-input').files[0];
+
+        // if (newTitle == "" || newContent == "") {
+        //     alert("Please enter");
+        //     return false;
+        // } else {
+            titleForm.submit();
+            contentForm.submit();
+            imageForm.submit();
+        // }
+    });
+
+    // Post Content
+    document.getElementById('content-edit-button').addEventListener('click', function () {
+        var currentInput = document.getElementById('content-current-input');
+        var newInput = document.getElementById('content-new-input');
+        currentInput.style.display = 'none';
+        newInput.style.display = 'inline-block';
+        newInput.focus();
+    });
+
+    document.getElementById('content-discard-button').addEventListener('click', function () {
+        var currentInput = document.getElementById('content-current-input');
+        var newInput = document.getElementById('content-new-input');
+        currentInput.style.display = 'inline-block';
+        newInput.style.display = 'none';
+        newInput.value = "";
+    });
+
+    // Post Image
+    var deleteImage = document.getElementById('image-discard-button');
+    var imageInput = document.getElementById('image-new-input');
+    deleteImage.addEventListener('click', () => {
+        imageInput.value = '';
+    });
+
+    var modal = document.getElementById("myModal");
+    var btn = document.getElementsByClassName("edit");
+
+    for (var i = 0; i < btn.length; i++) {
+        btn[i].onclick = function () {
+            var id = this.getAttribute('data-post-id');
+            var title = this.getAttribute('data-post-title');
+            var content = this.getAttribute('data-post-content');
+            document.getElementById('title-current-input').innerHTML = title;
+            document.getElementById('content-current-input').innerHTML = content;
+            var postIDtitle = document.getElementById('post-id-title');
+            var postIDcontent = document.getElementById('post-id-content');
+            var postIDimage =document.getElementById('post-id-image');
+            postIDtitle.value = id;
+            postIDcontent.value = id;
+            postIDimage.value = id;
+            console.log(postIDtitle.value, postIDcontent.value, postIDimage.value);
+            modal.style.display = "block";
+        }
+    }
+
 </script>
 <script src="../js/add_post.js"></script>
 <script src="../js/bootstrap.js"></script>

@@ -554,9 +554,7 @@ ul {
     transition: border-color 0.3s;
     overflow: hidden;
     height: auto;
-    /* Let JavaScript control the height dynamically */
     aspect-ratio: 16 / 8;
-    /* Default aspect ratio before image upload */
 }
 
 .file-input {
