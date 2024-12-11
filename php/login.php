@@ -13,7 +13,7 @@ session_destroy();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign In</title>
-    <link rel="stylesheet" href="../style/login_style.css?version=3">
+    <link rel="stylesheet" href="../style/login_style.css?version=4">
 </head>
 
 <body>
@@ -60,7 +60,8 @@ session_destroy();
                     Sign Up
                     <span class="underline"></span>
                 </button>
-                <form class="form form-signup" action="register.php" method="post" id="signup">
+                <form class="form form-signup" action="register.php" method="post" id="signup"
+                    onsubmit="return validateForm()">
                     <fieldset>
                         <legend>Please, enter your email, username, password and password confirmation for sign up.
                         </legend>
@@ -70,14 +71,14 @@ session_destroy();
                         </div>
                         <div class="input-block">
                             <label for="signup-mname">Middle Name</label>
-                            <input id="signup-mname" type="text" name="mname" required>
+                            <input id="signup-mname" type="text" name="mname">
                         </div>
                         <div class="input-block">
                             <label for="signup-lname">Last Name</label>
                             <input id="signup-lname" type="text" name="lname" required>
                         </div>
                     </fieldset>
-                    <button type="submit" class="btn-signup">Continue</button>
+                    <button type="submit" class="btn-signup" name="continue">Continue</button>
                 </form>
             </div>
         </div>
@@ -91,7 +92,27 @@ session_destroy();
                 this.parentElement.classList.add('is-active')
             })
         });
+
+        function validateForm() {
+            var firstName = document.getElementById("signup-fname").value.trim();
+            var middleName = document.getElementById("signup-mname").value.trim();
+            var lastName = document.getElementById("signup-lname").value.trim();
+            var pattern = /^[a-zA-Z\s]+$/;
+
+            if (!pattern.test(firstName)) {
+                alert("First name can only contain alphabets and spaces");
+                return false;
+            } else if (middleName !== "" && !pattern.test(middleName)) {
+                alert("Middle name can only contain alphabets and spaces");
+                return false;
+            } else if (!pattern.test(lastName)) {
+                alert("Last name can only contain alphabets and spaces");
+                return false;
+            }
+            return true;
+        }
     </script>
 </body>
 
 </html>
+

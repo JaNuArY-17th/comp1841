@@ -1,6 +1,4 @@
 <?php
-require_once "../includes/check.php";
-
 include '../includes/DatabaseConnection.php';
 
 if (isset($_POST['phone'])) {

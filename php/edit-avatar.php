@@ -8,7 +8,7 @@ if (isset($_POST['accept'])) {
     $id = $_SESSION['user']['id'];
     $image_path = NULL;
     if(isset($_FILES['image_path']) && $_FILES['image_path']['error'] === 0) {
-        $filename = $_SESSION['user']['avatar'];
+        $filename = basename($_FILES['image_path']['name']);
         move_uploaded_file($_FILES['image_path']['tmp_name'], '../images/avatars/'. $filename);
         $image_path = $filename;
     }

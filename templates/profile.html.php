@@ -145,6 +145,7 @@ require_once "../includes/check.php";
                 <i class="fa-solid fa-trash-can"></i>
             </button>
 
+            <!-- Gender -->
             <label for="" class="timestamp">Gender</label>
             <form action="../php/edit-gender.php" method="post"
                 style="justify-content: space-between; margin-top: 5px;">
@@ -206,7 +207,7 @@ require_once "../includes/check.php";
             <div style="display: flex; justify-content: space-between;">
                 <form action="../php/edit-phone.php" method="post" id="phone-form">
                     <a id="phone-current-input"><?= $_SESSION['user']['phone_number'] ?></a>
-                    <input type="text" name="phone" id="phone-new-input">
+                    <input type="text" name="phone" id="phone-new-input" maxlength="10">
                     <input type="submit" name="confirm" id="edit-phone-confirm">
                 </form>
 
@@ -445,7 +446,7 @@ require_once "../includes/check.php";
         var newInput = document.getElementById('mname-new-input').value.trim();
         var pattern = /^[a-zA-Z\s]+$/;
 
-        if (newInput != "" && !pattern.test(newInput)) {
+        if (!pattern.test(newInput)) {
             alert("Middle name can only contain alphabets and spaces.");
             return false;
         } else {
@@ -556,6 +557,13 @@ require_once "../includes/check.php";
         currentInput.style.display = 'inline-block';
         newInput.style.display = 'none';
         newInput.value = "";
+    });
+
+    document.getElementById('phone-new-input').addEventListener('input', function () {
+        var value = this.value;
+        if (!/^\d+$/.test(value)) {
+            this.value = value.replace(/[^0-9]/g, '');
+        }
     });
 
     document.getElementById('phone-confirm-button').addEventListener('click', function () {

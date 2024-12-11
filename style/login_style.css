@@ -338,3 +338,190 @@ body {
 .fpt-logo img {
     height: 40px;
 }
+
+#register-form input {
+    margin-bottom: 20px;
+}
+
+/* select */
+.toolbar {
+    margin-bottom: 20px;
+}
+
+.select {
+    position: relative;
+    min-width: 200px;
+}
+
+.select svg {
+    position: absolute;
+    right: 20px;
+    top: calc(50% - 3px);
+    width: 10px;
+    height: 6px;
+    stroke-width: 2px;
+    stroke: #9098a9;
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    pointer-events: none;
+}
+
+.select select {
+    -webkit-appearance: none;
+    padding: 10px 70px 10px 10px;
+    width: 100%;
+    border: none;
+    border-radius: 25px;
+    background: #2A3236;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 16px;
+    transition: all 150ms ease;
+    color: white;
+    border: 1px solid #cddbef;
+    margin-top: 8px;
+    padding-right: 15px;
+    padding-left: 15px;
+    font-size: 16px;
+}
+
+.select select:required:invalid {
+    color: white;
+}
+
+.select select option {
+    color: white;
+}
+
+.select select option {
+    color: white;
+}
+
+.select select option[value=""][disabled] {
+    display: none;
+}
+
+.select select:focus {
+    outline: none;
+    border-color: white;
+}
+
+.select select:hover {
+    background: #333D42;
+}
+
+.select select:hover+svg {
+    stroke: white;
+}
+
+.sprites {
+    position: absolute;
+    width: 0;
+    height: 0;
+    pointer-events: none;
+    user-select: none;
+}
+
+.select-items,
+.select-selected {
+    color: white;
+}
+
+.select select option {
+    color: white;
+}
+
+/* image */
+.upload-container {
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+    background-color: #1a1a1b;
+    border: 1px dashed #343536;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    color: #d7dadc;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    text-align: center;
+    cursor: pointer;
+    transition: border-color 0.3s;
+    overflow: hidden;
+    height: auto;
+    /* Let JavaScript control the height dynamically */
+    aspect-ratio: 16 / 8;
+    /* Default aspect ratio before image upload */
+}
+
+.file-input {
+    position: absolute;
+    width: 100%;
+    height: 100px;
+    opacity: 0;
+    z-index: 3;
+    cursor: pointer;
+}
+
+#upload-label {
+    display: flex;
+    align-items: center;
+    font-size: 13px;
+    gap: 8px;
+    z-index: 1;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.upload-icon {
+    background-color: #343536;
+    color: #d7dadc;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.upload-container:hover {
+    border-color: #d7dadc;
+}
+
+.preview-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.blurred-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: blur(10px);
+    z-index: 1;
+    opacity: 0.5;
+}
+
+.image-preview {
+    position: relative;
+    max-height: 100%;
+    max-width: 90%;
+    z-index: 2;
+    object-fit: contain;
+}
