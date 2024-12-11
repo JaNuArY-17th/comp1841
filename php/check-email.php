@@ -2,13 +2,12 @@
 require_once "../includes/check.php";
 
 include '../includes/DatabaseConnection.php';
-
 if (isset($_POST['email'])) {
     $email = $_POST['email'];
 
     try {
         $stmt = $pdo->prepare("SELECT COUNT(*) FROM users WHERE email = :email");
-        $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+        $stmt->bindValue(':email', $email);
         $stmt->execute();
         $count = $stmt->fetchColumn();
 
@@ -20,3 +19,4 @@ if (isset($_POST['email'])) {
     echo json_encode(['error' => 'Email not provided.']);
 }
 ?>
+

@@ -23,7 +23,7 @@ session_destroy();
                 <img src="../images/logos/gw_logo.png" alt="GreenWich Logo">
             </div>
             <div class="fpt-logo">
-                <img src="../images/logos/fpt_logo.png" alt="FPT Logo">  
+                <img src="../images/logos/fpt_logo.png" alt="FPT Logo">
             </div>
         </div>
         <h1 class="section-title">Login & Register</h1>
@@ -33,11 +33,11 @@ session_destroy();
                     Sign In
                     <span class="underline"></span>
                 </button>
-                <form class="form form-login" action="validateLogin.php" method="post">
+                <form class="form form-login" action="../php/validateLogin.php" method="post">
                     <fieldset>
                         <legend>Please, enter your username and password for login.</legend>
                         <div class="input-block">
-                            <label for="login-username">E-mail</label>
+                            <label for="login-username">Username</label>
                             <input id="login-username" name="username" type="text" required>
                         </div>
                         <div class="input-block">
@@ -45,7 +45,7 @@ session_destroy();
                             <input id="login-password" name="password" type="password" required>
                         </div>
                     </fieldset>
-                    <div style="content: ''; font-size: 14px; display: inline-block; padding-left: 35px">
+                    <div style="font-size: 14px; display: flex; justify-content: center;">
                         <?php
                         if (!empty($errorMessage)) {
                             echo "<p style='font-size: 14px; color: white; margin: 0px;'>$errorMessage</p>";
@@ -60,20 +60,21 @@ session_destroy();
                     Sign Up
                     <span class="underline"></span>
                 </button>
-                <form class="form form-signup">
+                <form class="form form-signup" action="register.php" method="post" id="signup">
                     <fieldset>
-                        <legend>Please, enter your email, password and password confirmation for sign up.</legend>
+                        <legend>Please, enter your email, username, password and password confirmation for sign up.
+                        </legend>
                         <div class="input-block">
-                            <label for="signup-email">E-mail</label>
-                            <input id="signup-email" type="email" required>
+                            <label for="signup-fname">First Name</label>
+                            <input id="signup-fname" type="text" name="fname" required>
                         </div>
                         <div class="input-block">
-                            <label for="signup-password">Password</label>
-                            <input id="signup-password" type="password" required>
+                            <label for="signup-mname">Middle Name</label>
+                            <input id="signup-mname" type="text" name="mname" required>
                         </div>
                         <div class="input-block">
-                            <label for="signup-password-confirm">Confirm password</label>
-                            <input id="signup-password-confirm" type="password" required>
+                            <label for="signup-lname">Last Name</label>
+                            <input id="signup-lname" type="text" name="lname" required>
                         </div>
                     </fieldset>
                     <button type="submit" class="btn-signup">Continue</button>
@@ -82,14 +83,14 @@ session_destroy();
         </div>
     </section>
     <script>
-        const switchers = [...document.querySelectorAll('.switcher')]
+        const switchers = [...document.querySelectorAll('.switcher')];
 
         switchers.forEach(item => {
             item.addEventListener('click', function () {
                 switchers.forEach(item => item.parentElement.classList.remove('is-active'))
                 this.parentElement.classList.add('is-active')
             })
-        })
+        });
     </script>
 </body>
 
