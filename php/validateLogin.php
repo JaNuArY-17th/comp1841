@@ -16,7 +16,12 @@ if ($user && $password == $user['password']) {
     session_start();
     $_SESSION['Authorized'] = TRUE;
     $_SESSION['user'] = $user;
-    header("Location: ../php/index.php");
+    
+    if ($_SESSION['user']['username'] != "admin") {
+        header("Location: ../php/index.php");
+    } else {
+        header("Location: ../php/admin.php");
+    }
     exit;
 } else {
     header("Location: ../php/login.php?error=Incorrect username or password");

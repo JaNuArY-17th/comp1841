@@ -1,0 +1,13 @@
+body {
+    background-color: #1A1A1B;
+    color: #fff;
+    font-family: sans-serif;
+}
+
+#title {
+    margin-bottom: 30px;
+}
+
+button[type='submit'] {
+    margin-right: 25px;
+}

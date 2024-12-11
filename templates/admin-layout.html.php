@@ -10,8 +10,9 @@ require_once "../includes/check.php";
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= $title ?></title>
     <link rel="stylesheet" href="../style/bootstrap.css?version=6">
-    <link rel="stylesheet" href="../style/layout-styles.css?version=31">
+    <link rel="stylesheet" href="../style/layout-styles.css?version=1">
     <link rel="stylesheet" href="../style/edit-post.css">
+    <link rel="stylesheet" href="../style/admin-layout.css?version=3">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://kit.fontawesome.com/fd40214cfa.js" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
@@ -28,22 +29,26 @@ require_once "../includes/check.php";
             </div>
         </div>
 
-        <div class="search-bar">
-            <i id="search" class="fa-solid fa-magnifying-glass"></i>
-            <input type="text" id="searchInput" placeholder="Search">
-            <i id="clear" class="fa-regular fa-circle-xmark"></i>
+        <div class="search-bar" style="background-color: #1A1A1B; border: none; justify-content: center;">
+            <div style="display: none;">
+                <i id="search" class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" id="searchInput" placeholder="Search">
+                <i id="clear" class="fa-regular fa-circle-xmark"></i>
+            </div>
+            <a href="../php/admin.php">
+                <h1 style="font-size: 45px; font-weight: bold; font-style: italic; color: #EE721E;">ADMIN</h1>
+            </a>
         </div>
 
-        <div class="profile">
-            <a class="add-post" href="addPost.php"><i class="fa-solid fa-plus"></i> Create</a>
-
+        <div class="profile" style="width: 143px; justify-content: right;">
             <img class='header-avatar' src="../images/avatars/<?= $_SESSION['user']['avatar'] ?>" />
-            <div class="avatar-hover-box">
+            <div class="avatar-hover-box" style="top: 125%;">
                 <ul>
                     <li>
-                        <a href="../php/profile.php" style="display: flex;">
+                        <a href="" style="display: flex;">
                             <div>
-                                <img class='avatar' src="../images/avatars/<?= $_SESSION['user']['avatar'] ?>" />
+                                <img class='avatar' style=" width: 30px; height: 30px;"
+                                    src="../images/avatars/<?= $_SESSION['user']['avatar'] ?>" />
                             </div>
                             <div style="display: flex; align-items: center;">
                                 <span
@@ -58,45 +63,25 @@ require_once "../includes/check.php";
                 </ul>
             </div>
         </div>
-
     </header>
+
     <main>
         <aside class="sidebar">
             <div class="home">
-                <a href="../php/home.php" style="padding-left: 10px;"><i class="fa-solid fa-house"></i> Home</a>
-                <a href="../php/popular.php" style="padding-left: 10px;"><i class="fa-solid fa-arrow-trend-up"></i>
-                    Popular</a>
-                <a href="../php/feedback.php" style="padding-left: 10px;"><i class="fa-solid fa-comments"></i>
-                    Feedback</a>
-            </div>
-            <hr>
-            <p style="margin-left: 45px; margin-bottom: 10px; font-size: smaller; color: #748791;">MODULES</h1>
-            <div class="modules">
-                <?php
-                include "../includes/DatabaseConnection.php";
-                $sql = "SELECT * FROM modules";
-                $modules = $pdo->query($sql);
-                foreach ($modules as $module) {
-                    ?>
-                    <a
-                        href="../php/module.php?module_code=<?= $module['module_code'] ?>&module_name=<?= $module['module_name'] ?>">
-                        <?= $module['module_code'] ?>
-                        <br>
-                        <?= $module['module_name'] ?>
-                    </a>
-                <?php
-                }
-                ?>
+                <a href="../php/user-list.php" style="padding-left: 10px;"><i class="fa-solid fa-users"
+                        style="width: 30px"></i> Users</a>
+                <a href="../php/module-list.php" style="padding-left: 10px;"><i class="fa-solid fa-layer-group"
+                        style="width: 30px"></i> Modules</a>
+                <a href="../php/post-list.php" style="padding-left: 10px;"><i class="fa-solid fa-clipboard"
+                        style="width: 30px"></i> Posts</a>
+                <a href="../php/feedback-list.php" style="padding-left: 10px;"><i class="fa-solid fa-comments"
+                        style="width: 30px"></i> Feedbacks</a>
             </div>
         </aside>
 
         <section class="content">
             <?= $output ?>
         </section>
-
-        <aside class="recent-access">
-            <h3>RECENT ACCESS</h3>
-        </aside>
     </main>
     <script src="../js/script.js"></script>
 

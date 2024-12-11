@@ -1,0 +1,28 @@
+.home {
+    margin-top: 20px;
+}
+
+.sidebar a {
+    background-color: #1A1A1B;
+    color: white;
+    padding: 15px;
+    margin: 0px 20px 5px 20px;
+    border-radius: 25px;
+    transition: background-color 0.3s ease;
+    color: white;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: normal !important;
+}
+
+.tablinks.active {
+    background-color: #333D42;
+}
+
+.avatar {
+    width: 70px ;
+    height: 70px ;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 10px;
+}

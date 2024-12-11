@@ -9,7 +9,7 @@ require_once "../includes/check.php";
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create Post</title>
-    <link rel="stylesheet" href="../style/add-style.css?version=7">
+    <link rel="stylesheet" href="../style/add-style.css?version=8">
 </head>
 
 <body>

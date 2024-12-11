@@ -27,8 +27,8 @@ label {
 
 #title,
 #content {
-    width: 90%;
-    max-width: 100%;
+    width: 600px;
+    max-width: 600px;
     padding: 20px;
     border: 1px solid #dddddd7c;
     border-radius: 15px;
@@ -51,7 +51,7 @@ textarea {
 
 .btn-group {
     display: flex;
-    justify-content: flex-end;
+    justify-content: right;
 }
 
 button[type='submit'] {

@@ -4,17 +4,17 @@ require_once "../includes/check.php";
 
 <div class="profile-container" style="height: 11vh;">
     <div class="profile-header">
-        <i class="fa-solid fa-arrow-trend-up" style="display: flex; font-size: 75px; align-items: center;"></i>
+        <i class="fa-solid fa-clipboard" style="display: flex; font-size: 75px; align-items: center;"></i>
         <div class="user-info" style="height: 75px;">
             <span class="username" style="font-size: 25px;">
-                Popular
+                Post List
             </span>
         </div>
     </div>
 </div>
 
 <div style="position: relative; top: 140px; z-index: 1;">
-<?php
+    <?php
     foreach ($posts as $post) {
         ?>
         <div class="post">
@@ -78,7 +78,13 @@ require_once "../includes/check.php";
                 </div>
 
                 <div class="post-tool">
-                    
+                    <form action="../php/delete-post.php" method="post"
+                        onsubmit="return confirm('Are you sure to delete this post?');">
+                        <input type="hidden" name="id" value="<?= $post['id'] ?>">
+                        <button type="submit">
+                            <i class="fa-solid fa-trash-can"></i>
+                        </button>
+                    </form>
                 </div>
             </div>
         </div>
